@@ -4,6 +4,11 @@
 
 A thing
 
+## Requires
+
+fn
+python-imaging (via pip)
+
 ## Install
 
 Install using either (as `sudo`)
