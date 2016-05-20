@@ -13,11 +13,11 @@ class Genlog(object):
 
     self.cwd = self.__get_cwd()
     self._store = self.cwd + '/.genlog'
-    self.__ensure_dir()
+    self.__ensure_store()
 
     self.fn = Fn()
     self.repo = self.fn.repo
-    self.size = 800
+    self.size = 1024
 
   def __enter__(self):
     return self
@@ -25,8 +25,9 @@ class Genlog(object):
   def __exit__(self ,type, value, traceback):
     return False
 
-  def __ensure_dir(self):
-    from os import stat, mkdir
+  def __ensure_store(self):
+    from os import stat
+    from os import mkdir
 
     try:
         stat(self._store)
@@ -44,17 +45,27 @@ class Genlog(object):
         return full_target
     return False
 
-  def __resize_png(self, fn):
-
+  def __thumbnail(self, recent):
     try:
       from PIL import Image
     except Exception:
       import Image
 
-    n = self.size
-    img = Image.open(fn)
-    img.thumbnail((n, n))
-    img.save(fn)
+    thumb = self.__copy_file(recent)
+    if thumb:
+      n = self.size
+      img = Image.open(thumb)
+      img.thumbnail((n, n))
+      img.save(thumb)
+
+    return thumb
+
+  def __commit_all(self, thumb):
+    from os import sep
+    msg = thumb.split(sep)[-1]
+    self.repo.git.add('-A')
+    self.repo.git.add(thumb, '-f')
+    self.repo.index.commit(':genlog: {:s}'.format(msg))
 
   def log(self, d):
 
@@ -64,15 +75,10 @@ class Genlog(object):
     if not recent:
       return None
 
-    new_file = self.__copy_file(recent)
-    if new_file:
-      self.__resize_png(new_file)
-      return True
-
-    return None
+    thumb = self.__thumbnail(recent)
+    self.__commit_all(thumb)
 
   def __get_cwd(self):
-
     from os import getcwd
     return getcwd()
 

@@ -21,8 +21,7 @@ Or
 
 The latter is most convenient if you will be editing the code.
 
-## Does it guarantee unique file names in any way?
+## Notes
 
-No. It only uses the current time to make a relatively distinct string—don't
-use this for anything remotely important.
+https://git-scm.com/blog/2010/08/25/notes.html
 
