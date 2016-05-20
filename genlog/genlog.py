@@ -14,7 +14,6 @@ class Genlog(object):
     self.fn = Fn()
     self.repo = self.fn.repo
     self._store = self.fn.top_level + sep + '.genlog'
-
     self.__ensure_store()
 
     self.size = 1024
