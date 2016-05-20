@@ -8,15 +8,15 @@ class Genlog(object):
   def __init__(
     self,
   ):
-
     from fn import Fn
-
-    self.cwd = self.__get_cwd()
-    self._store = self.cwd + '/.genlog'
-    self.__ensure_store()
+    from os import sep
 
     self.fn = Fn()
     self.repo = self.fn.repo
+    self._store = self.fn.top_level + sep + '.genlog'
+
+    self.__ensure_store()
+
     self.size = 1024
 
   def __enter__(self):
@@ -77,8 +77,4 @@ class Genlog(object):
 
     thumb = self.__thumbnail(recent)
     self.__commit_all(thumb)
-
-  def __get_cwd(self):
-    from os import getcwd
-    return getcwd()
 
