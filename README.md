@@ -14,8 +14,8 @@ This tool only works if you generate png files named after the convention of
 If you run `./example.py && genlog res` the following things will happen:
 
 - `example.py` will create a file named something like
-  `20160520-183502-785780-14de7ef-94310b2.png` in the `./res` folder. This
-  is to emulate the result of some script.
+  `res/20160520-183502-785780-14de7ef-94310b2.png`. This is to emulate the
+  result of some script.
 - Genlog will then create a thumbnail of this file and store it in `.genlog`.
 - Genlog will proceed to commit all files in the repo (`git commit -A`), along
   with the thumbnail. If there are no changes, only the thumbnail will be
@@ -47,7 +47,14 @@ Or
 
 The latter is most convenient if you will be editing the code.
 
+## Todo
+
+- Introduce Large File Storage? https://git-lfs.github.com/
+- optipng to reduce file size.
+
 ## Notes
+
+This could be useful:
 
 https://git-scm.com/blog/2010/08/25/notes.html
 
