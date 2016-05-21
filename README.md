@@ -41,6 +41,8 @@ make it easier to store various results along the way.
 Please note that this does create a lot of extra commits, which is probably not
 what you want in your projects in practice.
 
+Some more discussion on twitter:
+https://twitter.com/inconvergent/status/732522970619465728 
 
 ## Requires
 
