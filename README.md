@@ -21,6 +21,18 @@ If you run `./example.py && genlog res` the following things will happen:
   with the thumbnail. If there are no changes, only the thumbnail will be
   commited.
 
+`res` is the name of the directory where Genlog should look for images. If you
+simply run `genlog` it will look in the current directory.
+
+You can also run genlog seperately:
+
+    ./example.py
+    genlog res
+
+And you can add information to the commit message:
+
+    genlog res -m "this was a good result."
+
 ## What is the purpose of this?
 
 I frequently experiment with generative algorithms. This tool is an attempt to

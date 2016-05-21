@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from git.repo import Repo
-
 class Genlog(object):
 
   def __init__(
@@ -59,14 +57,18 @@ class Genlog(object):
 
     return thumb
 
-  def __commit_all(self, thumb):
+  def __commit_all(self, thumb, m):
     from os import sep
-    msg = thumb.split(sep)[-1]
+    info = thumb.split(sep)[-1]
     self.repo.git.add('-A')
     self.repo.git.add(thumb, '-f')
-    self.repo.index.commit(':genlog: {:s}'.format(msg))
 
-  def log(self, d):
+    s = ':genlog: {:s}'.format(info)
+    if m:
+      s += '\n\n{:s}'.format(m)
+    self.repo.index.commit(s)
+
+  def log(self, d, m):
 
     if not d:
       d = '.'
@@ -75,5 +77,5 @@ class Genlog(object):
       return None
 
     thumb = self.__thumbnail(recent)
-    self.__commit_all(thumb)
+    self.__commit_all(thumb, m)
 

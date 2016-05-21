@@ -4,11 +4,13 @@
 """genlog
 
 Usage:
-  genlog [<dir>]
+  genlog [<dir>] [-m <message>]
   genlog -h
 
 Examples:
 
+  genlog        Store most recent image in current directory.
+  genlog dir    Store most recent image in directory 'dir'.
   -h            Show this screen.
   --version     Show version.
 """
@@ -32,7 +34,8 @@ def main(args):
   # print(args)
   try:
     with Genlog() as genlog:
-      genlog.log(d=args['<dir>'])
+      # print(args)
+      genlog.log(d=args['<dir>'], m=args['<message>'])
 
   except Exception as e:
     print(e, file=stderr)
