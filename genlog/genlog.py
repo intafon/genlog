@@ -57,16 +57,29 @@ class Genlog(object):
 
     return thumb
 
+  def __get_author(self):
+    from os import getenv
+    email = getenv('GENLOG_USER_EMAIL', '')
+    if len(email)>0:
+      return email
+    return None
+
   def __commit_all(self, thumb, m):
     from os import sep
+    from git import Actor
     info = thumb.split(sep)[-1]
     self.repo.git.add('-A')
     self.repo.git.add(thumb, '-f')
 
+    email = self.__get_author()
+    a = None
+    if email:
+      a = Actor(':genlog:', email)
+
     s = ':genlog: {:s}'.format(info)
     if m:
       s += '\n\n{:s}'.format(m)
-    self.repo.index.commit(s)
+    self.repo.index.commit(s, committer=a, author=a)
 
   def log(self, d, m):
 

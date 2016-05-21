@@ -33,6 +33,12 @@ And you can add information to the commit message:
 
     genlog res -m "this was a good result."
 
+You can export an environment variable to make genlog commit as a different
+author. This string needs to be a valid email (preferably associated with your
+Github account):
+
+    export GENLOG_USER_EMAIL='youremail+genlog@gmail.com'
+
 ## What is the purpose of this?
 
 I frequently experiment with generative algorithms. This tool is an attempt to
@@ -42,7 +48,7 @@ Please note that this does create a lot of extra commits, which is probably not
 what you want in your projects in practice.
 
 Some more discussion on twitter:
-https://twitter.com/inconvergent/status/732522970619465728 
+https://twitter.com/inconvergent/status/732522970619465728
 
 ## Requires
 
