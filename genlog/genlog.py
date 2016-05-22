@@ -67,7 +67,8 @@ class Genlog(object):
   def __commit_all(self, thumb, m):
     from os import sep
     from git import Actor
-    info = thumb.split(sep)[-1]
+
+    info_file = thumb.split(sep)[-1]
     self.repo.git.add('-A')
     self.repo.git.add(thumb, '-f')
 
@@ -76,9 +77,12 @@ class Genlog(object):
     if email:
       a = Actor(':genlog:', email)
 
-    s = ':genlog: {:s}'.format(info)
     if m:
-      s += '\n\n{:s}'.format(m)
+      s = m
+    else:
+      s = ':genlog:'
+
+    s += '\n\n:thumb:{:s}'.format(info_file)
     self.repo.index.commit(s, committer=a, author=a)
 
   def log(self, d, m):
