@@ -75,7 +75,7 @@ class Genlog(object):
     email = self.__get_author()
     a = None
     if email:
-      a = Actor(':genlog:', email)
+      a = Actor('genlog', email)
 
     if m:
       s = m
