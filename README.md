@@ -52,7 +52,7 @@ https://twitter.com/inconvergent/status/732522970619465728
 
 ## Requires
 
-*    `fn-python3`: https://github.com/inconvergent/fn-python3
+*    `fn`: https://github.com/inconvergent/fn
 *    `python-imaging`: `apt-get install python3-imaging`
 
 ## Install
