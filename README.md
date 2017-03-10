@@ -7,7 +7,7 @@ with a thumbnail based on the most recently generated file. The commit is added
 in the currently active branch.
 
 This tool only works if you generate png files named after the convention of
-`fn-python3` listed in the requirements below.
+`fn` listed in the requirements below.
 
 ## Usage
 
